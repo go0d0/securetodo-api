@@ -14,4 +14,6 @@ const postgres = new Client({
   database : process.env.pg_database
 })
 
+postgres.connect()
+
 module.exports = postgres;
