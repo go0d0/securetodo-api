@@ -1,3 +1,9 @@
+const  hash = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config({path:"../.env"});
+const kunci = process.env.jwt_key;
+
+
 // query db for mongodb
 const logikaBisnis = require("../db_connection/mongoCrud")
 
@@ -19,8 +25,8 @@ const hasil = await identitas.query(`select  * from pengguna where id = $1`, [id
 }
 
 exports.PgBuatData = async (data) => { 
-
-const hasil = await identitas.query(`insert into pengguna (username, password) values ($1, $2) returning *`,[data.username,data.password]);
+const hashPassword = hash.hash(data.password, 10);
+const hasil = await identitas.query(`insert into pengguna (username, password) values ($1, $2) returning *`,[data.username,hashPassword]);
 	return hasil.rows[0];
 }
 
@@ -36,4 +42,24 @@ exports.PgHapus = async (id) => {
 
 }
  
+exports.validasiUser= async (username,password) => {
+  
+  const hasil = await identitas.query(`select * from pengguna where username = $1`,[username])
+  
+  const user = hasil.rows[0];
+  if(!user) return null;
+  
+  const validPw = await hash.compare(password, user.password);
+  if(!validPw) return null;
+  
+  return user;
+}
 
+
+exports.buatToken= (data) => {
+  const isi ={
+    id : data.id,
+    nama : data.username
+  }
+  return jwt.sign(isi,kunci, {expiresIn : "1h"});
+}

@@ -57,3 +57,19 @@ res.status(500).json({error:"data yang ingin dihapus tidak ditemukan"});
 }
 
 }
+
+
+exports.login = async (req,res) => {
+  try{
+    const {username,password} = req.body;
+    const hasil = await servisPg.validasiUser(username,password)
+    if(!hasil) return res.status(401).json({message:"data tidak valid"})
+    const token = servisPg.buatToken(hasil);
+    res.json({message:"login berhasil", token})
+  }catch(eror){
+    console.error(eror)
+    res.status(500).json({message:"terjadi kesalahan server"})
+  }
+  
+  
+}
