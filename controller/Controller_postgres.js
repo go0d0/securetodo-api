@@ -49,7 +49,7 @@ res.status(500).json({error: "terdapat kesalahan di update"});
 
 exports.hapus = async (req,res) => {
 try{
-const hasil = await servisPg.PgHapus(req.params.id);
+ await servisPg.PgHapus(req.params.id);
 res.json({message:"data berhasil dihapus"});
 }catch(err){
 console.error(err);

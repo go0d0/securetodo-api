@@ -17,7 +17,7 @@ const data = Object.fromEntries(formData.entries());
 const hasil = await response.json();
 
 			if (response.ok){
-			window.location.href = 'HalamanUtama.html';
+			window.location.href = '../HalamanUtama.html';
 			}else{
 pesan.textContent = hasil.error;
 			}

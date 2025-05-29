@@ -14,7 +14,7 @@ method: 'POST',
 body: JSON.stringify(data)
 			});
 			if (response.ok){
-window.location.href = "login.html";
+window.location.href = "../login.html";
 			}
 		}catch(err){
 console.error(err);		
