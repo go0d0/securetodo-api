@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 const daftar = document.getElementById("halamanDaftar");
-
+if ( daftar instanceof HTMLFormElement){
 	daftar.addEventListener("submit", async (e) => {
 e.preventDefault();
 
@@ -20,5 +20,5 @@ window.location.href = "../login.html";
 console.error(err);		
 		}
 	})
-
+}
 })
