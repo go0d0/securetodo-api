@@ -9,6 +9,7 @@ const app = expres();
 
 
 app.use(expres.json());
+app.use(expres.static("web"));
 app.use(customMiddleware);
 
 app.use("/todo", router)

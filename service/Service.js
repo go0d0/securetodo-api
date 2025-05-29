@@ -25,7 +25,7 @@ const hasil = await identitas.query(`select  * from pengguna where id = $1`, [id
 }
 
 exports.PgBuatData = async (data) => { 
-const hashPassword = hash.hash(data.password, 10);
+const hashPassword = await hash.hash(data.password, 10);
 const hasil = await identitas.query(`insert into pengguna (username, password) values ($1, $2) returning *`,[data.username,hashPassword]);
 	return hasil.rows[0];
 }
