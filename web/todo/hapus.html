@@ -9,11 +9,11 @@
 		<h1>hapus todo </h1>
 		<form id="hapusTodo">
 			<label for="hapus">Masukkan id dari data yang ingin di hapus</label>
-			<input type="number" id="edit" name="id" required>
+			<input type="text" pattern="[0-9a-fA-Z]{24}" id="hapus" name="id" required>
 			<button type="submit">hapus</button><br>
 		</form>
-<p></p>
+		<p id="pesanHapus"></p>
 
-		<script src = ""></script>
+		<script src = "../js_fetch/hapus.js"></script>
 	</body>
 </html>

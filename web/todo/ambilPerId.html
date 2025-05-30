@@ -7,8 +7,12 @@
 	</head>
 	<body>
 		<h1>tampilkan todo berdasarkan id</h1>
-		<div id="detail-id">mengambil data....</div>
-
-		<script src = ""></script>
+		<form id="perId">
+			<label for="idUbah">Id yang ingin ditampilkan:</label>
+			<input type="text" id="idUbah" name="id" pattern="[0-9a-fA-F]{24}" required>
+			<button type="submit">cari</button>
+		</form>
+		<p></p>
+		<script src = "../js_fetch/ambilPerId.js"></script>
 	</body>
 </html>
