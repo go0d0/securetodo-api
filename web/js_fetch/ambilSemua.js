@@ -19,7 +19,7 @@ const list = document.getElementById("data-list");
 
 data.forEach(item => {
 const li = document.createElement("li");
-li.textContent = `title: ${item.title}, deskripsi: ${item.description}`;
+li.textContent = `id: ${item._id}, title: ${item.title}, deskripsi: ${item.description}`;
 list.appendChild(li);
 });	
 
