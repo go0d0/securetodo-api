@@ -13,7 +13,8 @@ exports.buatTodo = (data) => logikaBisnis.create(data);
 exports.ubah = (id,data) => logikaBisnis.findByIdAndUpdate(id,data,{new : true});
 exports.hapus = (id) => logikaBisnis.findByIdAndDelete(id);
 // query db for postgresql
-const identitas = require("../db_connection/postgresCrud");
+// ../db_connection/postgresCrud
+const identitas = require("../db_connection/db_test");
 
 exports.PgAmbilSemua = async () =>  { 
 const hasil = await identitas.query("SELECT * FROM pengguna");
