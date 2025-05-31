@@ -4,10 +4,12 @@ const db = require("../db_connection/db_test")
 
 beforeAll(async () => {
   await db.query("Delete from pengguna");
+
 });
 
 afterAll(async () => {
   await db.query("delete from pengguna")
+	await db.end();
 });
 
 describe ("test crud", () => {
@@ -17,7 +19,7 @@ describe ("test crud", () => {
     .post("/identity/daftar")
     .send({username:"jaki", password:"jaki"})
     
-    expect(res.status.code).toBe(201);
+    expect(res.statusCode).toBe(201);
     expect(res.body.username).toBe("jaki");
     userId=res.body.id;
   })
@@ -29,7 +31,7 @@ describe ("test crud", () => {
   test("Update test", async () => {
     const res = await request(app)
     .put(`/identity/login/${userId}`)
-    .send({username :"Jakiro"})
+    .send({username :"Jakiro", password:"jaki"})
     
     expect(res.body.username).toBe("Jakiro");
   })
